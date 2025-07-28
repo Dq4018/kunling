@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识产权管理系统 - 首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* 顶部导航栏 */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding-top: 44px;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 44px;
+            padding: 0 16px;
+        }
+
+        .nav-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .user-name {
+            font-size: 12px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .nav-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-item {
+            position: relative;
+            padding: 4px;
+            cursor: pointer;
+        }
+
+        .icon {
+            font-size: 18px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: #ff4757;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 4px;
+            border-radius: 8px;
+            min-width: 16px;
+            height: 16px;
+            line-height: 14px;
+            text-align: center;
+        }
+
+        /* 内容区域 */
+        .content {
+            flex: 1;
+            padding: 88px 16px 120px;
+            overflow-y: auto;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* 统计数据行 */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .stat-number.pending {
+            color: #ff9500;
+        }
+
+        .stat-number.approved {
+            color: #34c759;
+        }
+
+        .stat-number.registered {
+            color: #007aff;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pie-chart {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: conic-gradient(#ff9500 0deg 83deg, #34c759 83deg 360deg);
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .pending-color {
+            background-color: #ff9500;
+        }
+
+        .approved-color {
+            background-color: #34c759;
+        }
+
+        .legend-text {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* 风险列表 */
+        .risk-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .risk-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .risk-item:last-child {
+            border-bottom: none;
+        }
+
+        .risk-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .risk-level {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .level-high {
+            background-color: #ff4757;
+        }
+
+        .level-medium {
+            background-color: #ff9500;
+        }
+
+        .risk-title {
+            font-size: 14px;
+            color: #333;
+            flex: 1;
+        }
+
+        .risk-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* 底部操作按钮 */
+        .bottom-actions {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 12px;
+            padding: 12px 16px;
+            background-color: #fff;
+            border-top: 1px solid #e5e5e5;
+            z-index: 1000;
+        }
+
+        .action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            height: 44px;
+            border-radius: 8px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.8;
+        }
+
+        .action-btn.primary {
+            background-color: #007aff;
+            color: #fff;
+        }
+
+        .action-btn.secondary {
+            background-color: #34c759;
+            color: #fff;
+        }
+
+        /* 版权信息 */
+        .copyright {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e5e5e5;
+            padding: 8px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            z-index: 999;
+        }
+
+        .copyright-text {
+            font-size: 10px;
+            color: #999;
+            text-align: center;
+        }
+
+        .monitor-info {
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- 顶部导航栏 -->
+        <div class="nav-bar">
+            <div class="nav-content">
+                <div class="nav-left">
+                    <div class="user-name">张三</div>
+                    <h1 class="nav-title">个人工作台</h1>
+                </div>
+                <div class="nav-icons">
+                    <div class="icon-item">
+                        <span class="icon">🔍</span>
+                    </div>
+                    <div class="icon-item">
+                        <span class="icon">🔔</span>
+                        <div class="badge">5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心数据卡片区域 -->
+        <div class="content">
+            <!-- 项目概况卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📊 项目概况</div>
+                    <span>→</span>
+                </div>
+                <div class="card-content">
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">总项目</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number pending">8</div>
+                            <div class="stat-label">进行中</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number approved">16</div>
+                            <div class="stat-label">已完成</div>
+                        </div>
+                    </div>
+                    <!-- 简单的饼图展示 -->
+                    <div class="chart-container">
+                        <div class="pie-chart"></div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color pending-color"></div>
+                                <div class="legend-text">进行中</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color approved-color"></div>
+                                <div class="legend-text">已完成</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商标概况卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">商标概况</div>
+                    <span>→</span>
+                </div>
+                <div class="card-content">
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-number">89</div>
+                            <div class="stat-label">总数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number pending">12</div>
+                            <div class="stat-label">待审</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number registered">77</div>
+                            <div class="stat-label">已注册</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 风险预警卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">风险预警</div>
+                    <span>→</span>
+                </div>
+                <div class="card-content">
+                    <div class="risk-list">
+                        <div class="risk-item">
+                            <div class="risk-content">
+                                <div class="risk-level level-high"></div>
+                                <div class="risk-title">专利ZL202301234567即将到期</div>
+                            </div>
+                            <div class="risk-time">2小时前</div>
+                        </div>
+                        <div class="risk-item">
+                            <div class="risk-content">
+                                <div class="risk-level level-medium"></div>
+                                <div class="risk-title">商标"昆灵科技"续展提醒</div>
+                            </div>
+                            <div class="risk-time">5小时前</div>
+                        </div>
+                        <div class="risk-item">
+                            <div class="risk-content">
+                                <div class="risk-level level-high"></div>
+                                <div class="risk-title">发现疑似侵权产品</div>
+                            </div>
+                            <div class="risk-time">8小时前</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部快速操作按钮 -->
+        <div class="bottom-actions">
+            <button class="action-btn primary">
+                <span class="icon">➕</span>
+                新增登记
+            </button>
+            <button class="action-btn secondary">
+                <span class="icon">⚙️</span>
+                监控设置
+            </button>
+        </div>
+        
+        <!-- 版权信息 -->
+        <div class="copyright">
+            <div class="copyright-text">© 2024 昆灵科技 知识产权管理系统 v1.0</div>
+            <div class="monitor-info">当前监控用户：张三 (知识产权管理员)</div>
+        </div>
+    </div>
+</body>
+</html>

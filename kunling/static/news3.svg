@@ -1,0 +1,8 @@
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+  <rect x="30" y="25" width="60" height="40" fill="#dc3545" rx="5"/>
+  <text x="60" y="45" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">!</text>
+  <rect x="25" y="70" width="70" height="4" fill="#dc3545" rx="2"/>
+  <rect x="35" y="78" width="50" height="3" fill="#6c757d" rx="1.5"/>
+  <text x="60" y="95" font-family="Arial, sans-serif" font-size="12" fill="#495057" text-anchor="middle">案例分析</text>
+</svg>

@@ -1,0 +1,115 @@
+{
+  "uni-starter": {
+    "description": "uni-starter项目目录结构",
+    "structure": {
+      "uniCloud": {
+        "cloudfunctions": {
+          "description": "云函数目录",
+          "common": {
+            "description": "公共模块",
+            "uni-config-center": {
+              "description": "uni-starter的服务端配置中心，项目所有云函数的配置在这里填写",
+              "index.js": "config-center入口文件",
+              "uni-id": {
+                "description": "uni-id模块配置目录",
+                "config.json": "uni-id对应的配置数据：微信登录、一键登录、短信验证码登录等key都在这里填写",
+                "file.cert": "uni-id依赖的配置文件,假如你使用微信发红包功能，需要的证书文件就是放到这里"
+              }
+            },
+            "uni-id": "uni-id用户体系"
+          },
+          "check-version": "检查更新云函数",
+          "rewarded-video-ad-notify-url": "签到插件广告回调",
+          "uni-analyse-searchhot": "云端一体搜索模板依赖的云函数",
+          "uni-captcha-co": "云端一体图形验证码组件云对象",
+          "uni-clientDB-actions": "客户端直接操作数据库拦截逻辑",
+          "uni-open-bridge": "统一接管微信等三方平台认证的开源库",
+          "upgrade-center": "云端一体uni升级中心的云函数",
+          "uni-id-co": "用户中心云函数，实现用户注册、修改密码、发送验证码、快捷登录（微信、短信、账户、一键登录）"
+        },
+        "database": {
+          "description": "云数据目录",
+          "db_init.json": "db_init.json初始化数据库文件，其中不再包含schema",
+          "opendb-app-versions.schema.json": "应用版本，表结构文件",
+          "opendb-banner.schema.json": "横幅数据表，表结构文件",
+          "opendb-feedback.schema.json": "意见反馈表，表结构文件",
+          "opendb-news-articles.schema.json": "新闻文章表，表结构文件",
+          "opendb-news-categories.schema.json": "新闻分类表，表结构文件",
+          "opendb-news-comments.schema.json": "新闻评论表，表结构文件",
+          "opendb-news-favorite.schema.json": "新闻收藏表，表结构文件",
+          "opendb-search-hot.schema.json": "热门搜索表，表结构文件",
+          "opendb-search-log.schema.json": "搜索记录表，表结构文件",
+          "opendb-verify-codes.schema.json": "验证码表，表结构文件",
+          "uni-id-log.schema.json": "登录日志表，表结构文件",
+          "uni-id-scores.schema.json": "用户积分表，表结构文件",
+          "uni-id-users.schema.json": "用户表，表结构文件"
+        }
+      },
+      "pages": {
+        "description": "业务页面文件存放的目录",
+        "common": {
+          "webview": {
+            "webview.vue": "webview页面，用于实现跨端的web页面浏览"
+          }
+        },
+        "grid": {
+          "grid.vue": "带宫格和banner的示例页面"
+        },
+        "list": {
+          "list.vue": "新闻列表",
+          "search": {
+            "search": "云端一体搜索插件"
+          },
+          "detail.vue": "新闻详情"
+        },
+        "ucenter": {
+          "about": {
+            "about": "关于我们"
+          },
+          "login-page": "登录模块",
+          "read-news-log": {
+            "read-news-log": "新闻阅读记录"
+          },
+          "invite": {
+            "invite": "带用户inviteCode参数的应用下载页"
+          },
+          "settings": {
+            "dc-push": {
+              "push.js": "push权限操作SDK"
+            },
+            "settings.vue": "app设置"
+          },
+          "userinfo": {
+            "description": "用户个人信息",
+            "bind-mobile": {
+              "bind-mobile.vue": "绑定手机号码"
+            },
+            "limeClipper": {
+              "description": "图片裁剪插件,来源limeClipper @作者： 陌上华年",
+              "images": {
+                "photo.svg": "图片图标",
+                "rotate.svg": "旋转图标"
+              },
+              "index.css": "样式文件",
+              "limeClipper.vue": "裁剪组件",
+              "README.md": "说明文档",
+              "utils.js": "工具函数"
+            },
+            "main.js": "入口文件",
+            "cropImage.vue": "引用limeClipper的图片裁剪模块，为了方便二开可能会出现兼容vue与nvue，所以做成了页面而不是组件",
+            "userinfo.vue": "用户信息页面"
+          },
+          "ucenter.vue": "用户中心"
+        }
+      },
+      "static": "存放应用引用的本地静态资源（如图片、视频等）的目录，注意：静态资源只能存放于此",
+      "uni_modules": "存放uni_modules规范的插件",
+      "uni_modules_tools": "uni_modules插件上传辅助脚本",
+      "main.js": "Vue初始化入口文件",
+      "App.vue": "应用配置，用来配置App全局样式以及监听应用生命周期",
+      "uni-starter.config": "uni-starter的前端的配置文件，项目所有模块的配置在这里填写",
+      "manifest.json": "配置应用名称、appid、logo、版本等打包信息",
+      "pages.json": "配置页面路由、导航条、选项卡等页面类信息"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <polygon points="60,25 75,50 45,50" fill="#28a745"/>
+  <rect x="30" y="70" width="60" height="8" fill="#28a745" rx="4"/>
+  <rect x="40" y="85" width="40" height="6" fill="#6c757d" rx="3"/>
+  <text x="60" y="105" font-family="Arial, sans-serif" font-size="10" fill="#495057" text-anchor="middle">商标案例</text>
+</svg>

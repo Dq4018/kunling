@@ -1,0 +1,8 @@
+<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" fill="#e9ecef" stroke="#ced4da" stroke-width="2"/>
+  <circle cx="60" cy="40" r="20" fill="#28a745" opacity="0.8"/>
+  <path d="M50 40 L58 48 L70 32" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="25" y="70" width="70" height="4" fill="#28a745" rx="2"/>
+  <rect x="35" y="78" width="50" height="3" fill="#6c757d" rx="1.5"/>
+  <text x="60" y="95" font-family="Arial, sans-serif" font-size="12" fill="#495057" text-anchor="middle">流程优化</text>
+</svg>
